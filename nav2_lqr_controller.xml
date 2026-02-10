@@ -1,0 +1,8 @@
+<class_libraries>
+  <library path="nav2_lqr_controller">
+    <class type="nav2_lqr_controller::LQRController"
+           base_class_type="nav2_core::Controller">
+      <description>LQR controller plugin (skeleton)</description>
+    </class>
+  </library>
+</class_libraries>
