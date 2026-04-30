@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(nav2_lqr_controller)
+project(nav2_mpc_controller)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -19,6 +19,7 @@ find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_eigen REQUIRED)
+find_package(casadi REQUIRED)
 
 nav2_package()
 set(CMAKE_CXX_STANDARD 17)
@@ -27,7 +28,7 @@ include_directories(
   include
 )
 
-set(library_name nav2_lqr_controller)
+set(library_name nav2_mpc_controller)
 
 
 
@@ -51,11 +52,12 @@ set(library_name ${library_name})
 
 # Controller library
 add_library(${library_name} SHARED
-        src/lqr_controller.cpp)
+        src/mpc_controller.cpp)
 
 ament_target_dependencies(${library_name}
   ${dependencies}
 )
+target_link_libraries(${library_name} casadi)
 
 install(TARGETS ${library_name}
   ARCHIVE DESTINATION lib
@@ -69,7 +71,7 @@ install(DIRECTORY include/
 
 # install plugin description
 install(FILES
-  nav2_lqr_controller.xml
+  mpc_controller.xml
   DESTINATION share/${PROJECT_NAME}
 )
 
@@ -77,6 +79,6 @@ ament_export_include_directories(include)
 ament_export_libraries(${library_name})
 ament_export_dependencies(${dependencies})
 
-pluginlib_export_plugin_description_file(nav2_core nav2_lqr_controller.xml)
+pluginlib_export_plugin_description_file(nav2_core mpc_controller.xml)
 
 ament_package()

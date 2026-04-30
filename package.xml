@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>nav2_lqr_controller</name>
+  <name>nav2_mpc_controller</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
   <maintainer email="majian@Cspid.cn">csp</maintainer>
@@ -22,12 +22,13 @@
   <depend>pluginlib</depend>
   <depend>nav2_core</depend>
   <depend>nav2_util</depend>
+  <depend>casadi</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
-    <pluginlib plugin="${prefix}/nav2_lqr_controller.xml"/>
+    <nav2_core plugin="${prefix}/mpc_controller.xml"/>
   </export>
 </package>

@@ -14,14 +14,14 @@
 #include "nav_msgs/msg/path.hpp"
 #include "nav2_core/controller.hpp"
 
-namespace nav2_lqr_controller
+namespace nav2_mpc_controller
 {
 
-class LQRController : public nav2_core::Controller
+class MPCController : public nav2_core::Controller
 {
 public:
-  LQRController() = default;
-  ~LQRController() override = default;
+  MPCController() = default;
+  ~MPCController() override = default;
 
   // nav2_core::Controller interface
   void configure(
@@ -47,7 +47,7 @@ public:
   std::string plugin_name_;
   std::shared_ptr<nav2_costmap_2d::Costmap2DROS> costmap_ros_;
   nav2_costmap_2d::Costmap2D * costmap_;
-  rclcpp::Logger logger_ {rclcpp::get_logger("LqrController")};
+  rclcpp::Logger logger_ {rclcpp::get_logger("MPCController")};
   rclcpp::Clock::SharedPtr clock_;
 
 };
